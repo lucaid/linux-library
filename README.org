@@ -1,0 +1,6 @@
+#+TITLE: Lucaid's Linux Library
+
+*** Info
+
+- This is a public repository I use to host my commonly used scripts and configs for GNU/Linux for my personal access.
+- If you stumbled your way here and found something you want for some reason, feel free to grab it and do what you want with it.
