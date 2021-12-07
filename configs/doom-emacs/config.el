@@ -31,7 +31,8 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/Documents/org")
-
+(setq org-roam-directory "~/Documents/roam")
+(setq org-roam-v2-ack t)
 
 
 ;; Here are some additional functions/macros that could help you configure Doom:
@@ -83,5 +84,8 @@
   '(org-level-3 ((t (:inherit outline-3 :height 1.0))))
   '(org-level-4 ((t (:inherit outline-4 :height 1.0))))
   '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
+
+(after! org-roam
+  (org-roam-setup))
 
 (doom/set-frame-opacity 93)
