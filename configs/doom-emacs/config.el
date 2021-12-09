@@ -61,7 +61,7 @@
       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
       :unnarrowed t)
      ("l" "programming language" plain
-      "*Characteristics\n\n- Family: %?\n- Inpired by:\n\n* Reference:\n\n"
+      "* Characteristics\n\n- Family: %?\n- Inpired by:\n\n* Reference:\n\n"
       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
       :unnarrowed t)))
   :config
