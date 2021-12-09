@@ -31,9 +31,6 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/Documents/org")
-(setq org-roam-directory "~/Documents/roam")
-(setq org-roam-v2-ack t)
-
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -51,6 +48,26 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+(use-package! org-roam
+  :ensure t
+  :init
+  (setq org-roam-v2-ack t)
+  :custom
+  (org-roam-directory "~/Documents/roam")
+  (org-roam-completion-everywhere t)
+  (org-roam-capture-templates
+   '(("d" "default" plain
+      "%?"
+      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+      :unnarrowed t)
+     ("l" "programming language" plain
+      "*Characteristics\n\n- Family: %?\n- Inpired by:\n\n* Reference:\n\n"
+      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+      :unnarrowed t)))
+  :config
+  (org-roam-setup))
+
+
 (setq doom-font (font-spec :family "FiraCode Nerd Font" :size 15)
       doom-variable-pitch-font (font-spec :family "Ubuntu Nerd Font" :size 15)
       doom-big-font (font-spec :family "FiraCode Nerd Font" :size 24))
