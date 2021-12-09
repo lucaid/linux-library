@@ -48,6 +48,16 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+;; MYCODE
+;; This sets up the org-roam package as detailed in System Crafter's tutorials
+;; TODO make template files:
+;; Instead of formatting templates in code, you can create template .org files
+;; and use the same variable syntax to achieve same results
+;; Example:
+;; ("b" "book notes" plain
+;;   (file "~/Documents/roam/templates/book-notes-template.org")
+;;   :if-new (file+head ....)) and so on
 (use-package! org-roam
   :ensure t
   :init
@@ -55,18 +65,35 @@
   :custom
   (org-roam-directory "~/Documents/roam")
   (org-roam-completion-everywhere t)
+  (org-roam-dailies-capture-templates
+   '(("d" "default" entry
+      "* %<%H:%M %p>: %?"
+      :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
   (org-roam-capture-templates
    '(("d" "default" plain
       "%?"
-      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n")
       :unnarrowed t)
      ("l" "programming language" plain
       "* Characteristics\n\n- Family: %?\n- Inpired by:\n\n* Reference:\n\n"
-      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n")
+      :unnarrowed t)
+     ("b" "book notes" plain
+      "\n* Source\n\nAuthor: %^{Author}\nTitle: ${title}\nYear: %^{Year}\n\n* Summary\n\n%?"
+      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n")
+      :unnarrowed t)
+     ("p" "project" plain
+      "* Goals\n\n%?\n\n* Tasks\n\n** TODO Add initial tasks\n\n* Dates\n\n"
+      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n#+filetags: Project\n")
       :unnarrowed t)))
   :config
   (org-roam-setup))
-
+;; Notes for above:
+;; %^ asks for user input with the braketed text as the prompt
+;; each \n is a new line
+;; %? dictates where cursor goes
+;; %U inserts timestamp
+;; %H is 24hr %I is 12hr
 
 (setq doom-font (font-spec :family "FiraCode Nerd Font" :size 15)
       doom-variable-pitch-font (font-spec :family "Ubuntu Nerd Font" :size 15)
@@ -101,8 +128,5 @@
   '(org-level-3 ((t (:inherit outline-3 :height 1.0))))
   '(org-level-4 ((t (:inherit outline-4 :height 1.0))))
   '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
-
-(after! org-roam
-  (org-roam-setup))
 
 (doom/set-frame-opacity 93)
