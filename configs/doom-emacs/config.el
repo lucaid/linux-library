@@ -129,4 +129,10 @@
   '(org-level-4 ((t (:inherit outline-4 :height 1.0))))
   '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
 
+;; Timer Config
+(setq org-clock-sound "~/Documents/org/sounds/note1.wav")
+(map! :leader
+      "z" #'org-timer-set-timer)
+
+;; Transparency
 (doom/set-frame-opacity 93)
