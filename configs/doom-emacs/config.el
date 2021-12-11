@@ -21,17 +21,26 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
+(setq doom-font (font-spec :family "CodeNewRoman Nerd Font" :size 16)
+      doom-variable-pitch-font (font-spec :family "Ubuntu Nerd Font" :size 15)
+      doom-big-font (font-spec :family "CodeNewRoman Nerd Font" :size 24))
+(after! doom-themes
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t))
+(custom-set-faces!
+  '(font-lock-comment-face :slant italic)
+  '(font-lock-keyword-face :weight Medium))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
 (setq doom-theme 'doom-vibrant)
-(doom-themes-neotree-config)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 (setq org-directory "~/Documents/org")
 (setq org-agenda-files (directory-files-recursively "~/Documents/org/" "\.org$" t))
+
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
@@ -71,7 +80,7 @@
       :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
   (org-roam-capture-templates
    '(("d" "default" plain
-      "%?"
+      "* %?"
       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n")
       :unnarrowed t)
      ("l" "programming language" plain
@@ -95,21 +104,6 @@
 ;; %U inserts timestamp
 ;; %H is 24hr %I is 12hr
 
-(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 15)
-      doom-variable-pitch-font (font-spec :family "Ubuntu Nerd Font" :size 15)
-      doom-big-font (font-spec :family "FiraCode Nerd Font" :size 24))
-(after! doom-themes
-  (setq doom-themes-enable-bold t
-        doom-themes-enable-italic t))
-(custom-set-faces!
-  '(font-lock-comment-face :slant italic)
-  '(font-lock-keyword-face :weight Medium))
-
-(after! neotree
-  (setq neo-smart-open t
-        neo-window-fixed-size nil))
-(after! doom-themes
-  (setq doom-neotree-enable-variable-pitch t))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -138,4 +132,4 @@
       "z" #'org-timer-set-timer)
 
 ;; Transparency
-(doom/set-frame-opacity 93)
+(doom/set-frame-opacity 95)
