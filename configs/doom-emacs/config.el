@@ -94,6 +94,10 @@
      ("p" "project" plain
       "* Goals\n\n%?\n\n* Tasks\n\n** TODO Add initial tasks\n\n* Dates\n\n"
       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n#+filetags: Project\n")
+      :unnarrowed t)
+     ("c" "lesson notes" plain
+      (file "~/Documents/org/roam/templates/lesson-template.org")
+      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n#+filetags: Lesson\n")
       :unnarrowed t)))
   :config
   (org-roam-setup))
