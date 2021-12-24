@@ -22,7 +22,7 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 (setq doom-font (font-spec :family "CodeNewRoman Nerd Font" :size 16)
-      doom-variable-pitch-font (font-spec :family "CodeNewRoman Nerd Font" :size 16)
+      doom-variable-pitch-font (font-spec :family "LiterationSans Nerd Font" :size 15)
       doom-big-font (font-spec :family "CodeNewRoman Nerd Font" :size 24))
 (after! doom-themes
   (setq doom-themes-enable-bold t
@@ -80,7 +80,7 @@
       :if-new (file+head "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n"))))
   (org-roam-capture-templates
    '(("d" "default" plain
-      "* %?"
+      "\n* %?"
       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n")
       :unnarrowed t)
      ("l" "programming language" plain
@@ -95,7 +95,15 @@
       "* Goals\n\n%?\n\n* Tasks\n\n** TODO Add initial tasks\n\n* Dates\n\n"
       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n#+filetags: Project\n")
       :unnarrowed t)
-     ("c" "lesson notes" plain
+     ("g" "gig" plain
+      (file "~/Documents/org/roam/templates/gig-template.org")
+      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n#+filetags: Gig\n")
+      :unnarrowed t)
+     ("v" "venue" plain
+      (file "~/Documents/org/roam/templates/venue-template.org")
+      :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n#+filetags: Venue\n")
+      :unnarrowed t)
+     ("t" "textbook notes" plain
       (file "~/Documents/org/roam/templates/lesson-template.org")
       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n#+filetags: Lesson\n")
       :unnarrowed t)))
